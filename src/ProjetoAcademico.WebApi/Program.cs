@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetoAcademico.Domain.DTOs.CursoDto.Adicionar;
 using ProjetoAcademico.Domain.DTOs.CursoDto.Atualizar;
+using ProjetoAcademico.Domain.DTOs.ProfessorDto.Adicionar;
+using ProjetoAcademico.Domain.DTOs.ProfessorDto.Atualizar;
 using ProjetoAcademico.Domain.Interfaces.Repositories;
 using ProjetoAcademico.Domain.Interfaces.Services;
 using ProjetoAcademico.Domain.Services;
@@ -35,7 +37,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-
+// =====================CURSO=========================
 // Adicionar 
 app.MapPost("/adicionar", ([FromServices] IServiceCurso serviceCurso, CursoAdicionarDto cursoAdicionarDto) =>
 {
@@ -75,6 +77,49 @@ app.MapDelete("/remover/{id:guid}", ([FromServices] IServiceCurso serviceCurso, 
     return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);
 })
 .WithTags("Curso");
+
+
+// =====================PROFESSOR=========================
+
+// Adicionar 
+app.MapPost("/adicionarprof", ([FromServices] IServiceProfessor serviceProfessor, ProfessorAdicionarDto professorAdicionarDto) =>
+{
+    var response = serviceProfessor.Adicionar(professorAdicionarDto);
+    return response.Sucesso ? Results.Created("created", response) : Results.BadRequest(response);
+})
+.WithTags("Professor");
+
+// Listar
+app.MapGet("/listarprof", ([FromServices] IServiceProfessor serviceProfessor) =>
+{
+    var response = serviceProfessor.Listar();
+    return Results.Ok(response);
+})
+.WithTags("Professor");
+
+// Obter
+app.MapGet("/obterprof/{id:guid}", ([FromServices] IServiceProfessor serviceProfessor, Guid id) =>
+{
+    var response = serviceProfessor.Obter(id);
+    return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);
+})
+.WithTags("Professor");
+
+// Atualizar
+app.MapPut("/atualizarprof", ([FromServices] IServiceProfessor serviceProfessor, ProfessorAtualizarDto professorAtualizarDto) =>
+{
+    var response = serviceProfessor.Atualizar(professorAtualizarDto);
+    return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);
+})
+.WithTags("Professor");
+
+// Remover
+app.MapDelete("/removerprof/{id:guid}", ([FromServices] IServiceProfessor serviceProfessor, Guid id) =>
+{
+    var response = serviceProfessor.Remover(id);
+    return response.Sucesso ? Results.Ok(response) : Results.BadRequest(response);
+})
+.WithTags("Professor");
 
 
 app.UseHttpsRedirection();

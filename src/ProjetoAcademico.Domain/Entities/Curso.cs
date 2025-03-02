@@ -16,13 +16,6 @@ namespace ProjetoAcademico.Domain.Entities
         public int CargaHoraria { get; set; }
         public int QuantidadeMaximaAlunos { get; set; }
        
-        
-        // Nome string  50
-        // Periodo (Manhã, Tarde, Noite) -> Enumerador
-        // Descrição 500
-        // Carga Horária -int 
-        // Quantidade Máxima de ALunos -int
-
         // Construtor
         public Curso(string nome,EnumPeriodo periodo,string? descricao,int cargaHoraria,int quantidadeMaximaAlunos) 
         { 
