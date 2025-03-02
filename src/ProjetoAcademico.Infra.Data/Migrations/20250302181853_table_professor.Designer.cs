@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProjetoAcademico.Infra.Data.Context;
@@ -11,9 +12,11 @@ using ProjetoAcademico.Infra.Data.Context;
 namespace ProjetoAcademico.Infra.Data.Migrations
 {
     [DbContext(typeof(ProjetoAcademicoContext))]
-    partial class ProjetoAcademicoContextModelSnapshot : ModelSnapshot
+    [Migration("20250302181853_table_professor")]
+    partial class table_professor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

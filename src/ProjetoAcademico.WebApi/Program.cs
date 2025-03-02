@@ -19,6 +19,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IServiceCurso, ServiceCurso>();
 builder.Services.AddScoped<IRepositoryCurso, RepositoryCurso>();
+builder.Services.AddScoped<IServiceProfessor, ServiceProfessor>();
+builder.Services.AddScoped<IRepositoryProfessor, RepositoryProfessor>();
 
 //ProjetoAcademicoConnection
 builder.Services.AddDbContext<ProjetoAcademicoContext>(options =>
