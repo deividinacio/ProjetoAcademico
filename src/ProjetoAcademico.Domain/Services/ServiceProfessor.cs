@@ -27,7 +27,8 @@ namespace ProjetoAcademico.Domain.Services
             var professoresDto = professores.Select(professor => new ProfessorListarDto
             {
                 Id = professor.Id,
-                Nome = professor.Nome
+                Nome = professor.Nome,
+                Biografia = professor.Biografia
             });
             return new ServiceResponse<IEnumerable<ProfessorListarDto>>(professoresDto, this);
         }
