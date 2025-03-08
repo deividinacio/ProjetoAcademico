@@ -22,6 +22,26 @@ builder.Services.AddScoped<IRepositoryCurso, RepositoryCurso>();
 builder.Services.AddScoped<IServiceProfessor, ServiceProfessor>();
 builder.Services.AddScoped<IRepositoryProfessor, RepositoryProfessor>();
 
+// adicionado para passar erro Cors do navegados 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") // Permitir requisições do Angular
+                  .AllowAnyMethod()  // Permitir todos os métodos (GET, POST, PUT, DELETE)
+                  .AllowAnyHeader()  // Permitir todos os cabeçalhos
+                  .AllowCredentials(); // Permitir envio de credenciais (se necessário)
+        });
+});
+builder.Services.AddControllers();
+//===========================================
+
+
+
+
+
+
 //ProjetoAcademicoConnection
 builder.Services.AddDbContext<ProjetoAcademicoContext>(options =>
 {
@@ -123,6 +143,12 @@ app.MapDelete("/removerprof/{id:guid}", ([FromServices] IServiceProfessor servic
 })
 .WithTags("Professor");
 
+
+// Ativar CORS antes do middleware de autorização
+app.UseCors("AllowFrontend");
+app.UseAuthorization();
+app.MapControllers();
+//===============================================
 
 app.UseHttpsRedirection();
 

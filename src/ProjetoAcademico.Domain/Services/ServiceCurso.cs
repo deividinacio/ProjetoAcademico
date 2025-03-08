@@ -25,7 +25,13 @@ namespace ProjetoAcademico.Domain.Services
             var cursosDto = cursos.Select(curso => new CursoListarDto
             {
                 Id = curso.Id,
-                Nome = curso.Nome
+                Nome = curso.Nome,
+                Periodo = curso.Periodo 
+                switch { 
+                    Enumerators.EnumPeriodo.Manha => "Manhã",
+                    Enumerators.EnumPeriodo.Tarde => "Tarde",
+                    _ => "Noite"
+               }
             });
             return new ServiceResponse<IEnumerable<CursoListarDto>> ( cursosDto, this );
         }
