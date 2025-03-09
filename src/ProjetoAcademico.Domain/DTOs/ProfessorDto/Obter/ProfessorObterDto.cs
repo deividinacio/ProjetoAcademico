@@ -10,6 +10,6 @@ namespace ProjetoAcademico.Domain.DTOs.ProfessorDto.Obter
     {
         public Guid Id { get; set; }
         public required string Nome { get; set; }
-        public required string Bibliografia { get; set; }
+        public required string Biografia { get; set; }
     }
 }

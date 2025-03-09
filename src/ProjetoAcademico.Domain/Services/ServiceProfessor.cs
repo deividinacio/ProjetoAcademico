@@ -46,7 +46,7 @@ namespace ProjetoAcademico.Domain.Services
             {
                 Id = professor.Id,
                 Nome = professor.Nome,
-                Bibliografia = professor.Biografia
+                Biografia = professor.Biografia
             };
 
             return new ServiceResponse<ProfessorObterDto>(professorDto, this);
